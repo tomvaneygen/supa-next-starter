@@ -4,7 +4,7 @@ import NextTopLoader from 'nextjs-toploader'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import ReactQueryProvider from '@/providers/ReactQueryProvider'
+import {ReactQueryClientProvider} from '@/providers/ReactQueryProvider'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -35,14 +35,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ReactQueryProvider>
+          <ReactQueryClientProvider>
             <main className="flex min-h-screen flex-col items-center">
               {children}
               <Analytics />{' '}
               {/* ^^ remove this if you are not deploying to vercel. See more at https://vercel.com/docs/analytics  */}
             </main>
             <ReactQueryDevtools initialIsOpen={false} />
-          </ReactQueryProvider>
+          </ReactQueryClientProvider>
         </ThemeProvider>
       </body>
     </html>
